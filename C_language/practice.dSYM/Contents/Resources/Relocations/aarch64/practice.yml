@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/hale/Desktop/Univ_mac/C_language/practice'
+relocations:     []
+...
