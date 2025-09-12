@@ -1,1 +1,7 @@
 \n# Ignore PDF files\n*.pdf
+
+# Ignore PNG files
+*.png
+
+# Ignore Excel files
+*.xlsx
