@@ -83,11 +83,6 @@ int main() {
     int second = 9;
     int count = 0;
 /////////////////////////로직 부분
-///////////////////////같은 집합에 중복이 있는 경우
-    //input_1st에서 같은 수가 있을 경우
-
-
-///루프 시작
     for (count = 0; first >= 0 || second >= 0 ; ++count )
     {
 //first가 -1에 도달할 경우
@@ -115,16 +110,17 @@ int main() {
         }
         else if (ptr1[first]==ptr2[second])
         {
-           total[count] = ptr1[first];
+            //input_1st에서 같은 수가 있을 경우
+            while (ptr1[first]==ptr1[first-1]){
+                --first;
+            }
+            //input_2nd에서 같은 수가 있을 경우
+            while (ptr2[second]==ptr2[second-1]){
+                --second;
+            }
+            total[count] = ptr1[first];
               --first;
               --second;
-        }
-        else if (ptr1[first]==ptr1[first-1]){
-            --first;
-        }
-        //input_2nd에서 같은 수가 있을 경우
-        else if (ptr2[second]==ptr2[second-1]){
-            --second;
         }
     }
 /////////////printf 부분
