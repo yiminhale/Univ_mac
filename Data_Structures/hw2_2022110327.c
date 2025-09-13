@@ -4,7 +4,7 @@
     Input 조건:
     - 10개 정수로 이루어진 집합 2개를 입력받아야 함.
         구현방법: scanf를 두번 사용하고, 첫번째 scanf 끝에는 \n 사용해야 할듯. 
-        오류처리: 첫번째 scanf든 두번째 scanf든 10개 정수가 아니라면, "You should input 2 sets of 10 numbers."를 출력해야 함.
+        오류처리: 첫번째 scanf든 두번째 scanf든 10개 정수가 아니라면, "You must input 2 sets of 10 numbers."를 출력해야 함.
             **중요** 10개정수도 아니고 오름차순도 아니라면, 이 오류를 우선해서 출력해야 함. 즉, "You should input 2 sets of 10 numbers."를 출력해야 함.
     - 각 집합은 오름차순이어야만 함
         입력 양식: -3, -1, 0, 1, 3, 6, 17, 20, 31, 71 이런식으로 10개의 정수가 콤마로 구분되어 입력받음
