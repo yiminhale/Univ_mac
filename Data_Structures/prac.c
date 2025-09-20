@@ -1,27 +1,25 @@
-/* ptr_swap1.c */
 #include <stdio.h>
 
-void pswap(int *p1, int *p2)
+int main()
 {
-    printf("스왑 전 - p1: %d, p2: %d\n", *p1, *p2);
-    int *temp;
-    temp = p1;
-    p1 = p2;
-    p2 = temp;
-    printf("스왑 후 - p1: %d, p2: %d\n", *p1, *p2);
-}
+	int a,b;
+	int *p;
+	int *q;
 
-int main(void)
-{
-    int A = 10, B = 20;
-    int *pA, *pB;
-    pA = &A;
-    pB = &B;
+	a=10;
+	b=5;
 
-    pswap(pA, pB);
-
-    // 함수 호출 후
-    printf("pA가 가리키는 변수 : %d \n", *pA);
-    printf("pB가 가리키는 변수 : %d \n", *pB);
-    return 0;
+	p = &a;
+	q = &b;
+	printf("%p\n",p);
+	printf("%p\n",q);
+	*p = *q;
+	p=q;
+	printf("%p\n",p);
+	printf("%p\n",q);
+	printf("%d\n",a);
+	printf("%d\n",b);
+	printf("%d\n",*p);
+	printf("%d\n",*q);
+	return 0;
 }

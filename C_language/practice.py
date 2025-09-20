@@ -1,6 +1,8 @@
-list1 = [1, 2, 3, 4]
-x = list1
-
-x[0] = 999
-print(list1)  # Output: [999, 2, 3, 4]
-print(x)      # Output: [999, 2, 3, 4]
+#1
+print("My name is YI MIN SEOK")
+#2
+name = "YI MIN SEOK"
+age = 23
+print("My name is", name,",", age,"살이죠.")
+#3
+print(f"My name is {name}, {age}살이죠.")

@@ -20,12 +20,12 @@ int main(){
 	getchar();//바로 윗줄의 엔터 버퍼 제거
 	//////////////////output
 	putchar('\n');//줄바꿈
-	printf("[Age:%16d//%16.3o//%16x]\n", age,age,age);//16.3o 에서 .3을 빼야 할 수도 있음.
-	printf("[Weight:%-18.3lf]",weight);
+	printf("[Age:%16d//%#16o//%#16x]\n", age,age,age);//16.3o 에서 .3을 빼야 할 수도 있음. -> #o, #x 를 통해 해결
+	printf("[Weight:%18.3lf]",weight);
 	printf("[Sex:%10c]\n",sex);
 	printf("[Temperature:%+015d]", temperature);
 	printf("[Day:%c]\n", day);
-	printf("]Weather:%c]",weather);
+	printf("[Weather:%c]",weather);
 
 
 	return 0;
