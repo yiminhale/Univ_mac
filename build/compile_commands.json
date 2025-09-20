@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/Users/hale/Desktop/Univ_mac/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/hw1_2022110327.dir/hw1_2022110327.c.o -c /Users/hale/Desktop/Univ_mac/Data_Structures/hw1_2022110327.c",
+  "file": "/Users/hale/Desktop/Univ_mac/Data_Structures/hw1_2022110327.c",
+  "output": "CMakeFiles/hw1_2022110327.dir/hw1_2022110327.c.o"
+},
+{
+  "directory": "/Users/hale/Desktop/Univ_mac/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/hw2_2022110327.dir/hw2_2022110327.c.o -c /Users/hale/Desktop/Univ_mac/Data_Structures/hw2_2022110327.c",
+  "file": "/Users/hale/Desktop/Univ_mac/Data_Structures/hw2_2022110327.c",
+  "output": "CMakeFiles/hw2_2022110327.dir/hw2_2022110327.c.o"
+},
+{
+  "directory": "/Users/hale/Desktop/Univ_mac/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/hw3_2022110327.dir/hw3_2022110327.c.o -c /Users/hale/Desktop/Univ_mac/Data_Structures/hw3_2022110327.c",
+  "file": "/Users/hale/Desktop/Univ_mac/Data_Structures/hw3_2022110327.c",
+  "output": "CMakeFiles/hw3_2022110327.dir/hw3_2022110327.c.o"
+},
+{
+  "directory": "/Users/hale/Desktop/Univ_mac/build",
+  "command": "/usr/bin/clang   -g -std=gnu99 -arch arm64 -o CMakeFiles/prac.dir/prac.c.o -c /Users/hale/Desktop/Univ_mac/Data_Structures/prac.c",
+  "file": "/Users/hale/Desktop/Univ_mac/Data_Structures/prac.c",
+  "output": "CMakeFiles/prac.dir/prac.c.o"
+}
+]

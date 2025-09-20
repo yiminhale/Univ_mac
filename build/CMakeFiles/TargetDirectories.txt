@@ -1,0 +1,6 @@
+/Users/hale/Desktop/Univ_mac/build/CMakeFiles/hw1_2022110327.dir
+/Users/hale/Desktop/Univ_mac/build/CMakeFiles/hw2_2022110327.dir
+/Users/hale/Desktop/Univ_mac/build/CMakeFiles/hw3_2022110327.dir
+/Users/hale/Desktop/Univ_mac/build/CMakeFiles/prac.dir
+/Users/hale/Desktop/Univ_mac/build/CMakeFiles/edit_cache.dir
+/Users/hale/Desktop/Univ_mac/build/CMakeFiles/rebuild_cache.dir
