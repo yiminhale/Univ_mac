@@ -8,6 +8,7 @@
 /////////////////////////////////////////////////전처리기 호출
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 /////////////////////////////////////////////////함수 선언
 void print_horizontal_rule ();//1번 과정
 void print_menu();
@@ -47,7 +48,7 @@ int main(){
 	int result_of_2=logic_of_2();//2번 과정. 1을 입력받을 때 1을 반환하고, 이것이 3번 과정의 트리거가 되어야 함.
 	if (result_of_2 == 1)
 	{
-		logic_of_3();//3번 과정. Input 받기.
+		logic_of_3();//3번 과정. Input 받기.//문제될 경우 return 제거.
 	}
 	else if (result_of_2==0)//파일이 입력되지 않은 상태에서 3번과 2번을 선택할 경우.
 	{
@@ -114,7 +115,7 @@ int print_error_sr(){//score range 벗어날 경우 사용. 즉, 검사 로직�
 //////////////////////////////////////////////////
 void print_sort_menu()//sort 메뉴 출력
 {
-	printf("1) Name\n2) Age\n 3) Math\n 4) English\n5) History\nChoose the field to sort by : ");//: 뒤에 입력을 받기 위해 \n 사용하지 않음.
+	printf("1) Name\n2) Age\n3) Math\n4) English\n5) History\nChoose the field to sort by : ");//: 뒤에 입력을 받기 위해 \n 사용하지 않음.
 }
 //////////////////////////////////////////////////
 int logic_of_2()//첫 메뉴 출력. 첫 메뉴 출력이므로 당연히 입력된 파일은 없음
@@ -209,8 +210,8 @@ int logic_of_6()//파일을 입력받았으니 sort를 선택할 수 있게 메�
 	if (menu_btn == 2)//sort 선택.
 	{
 		logic_of_7();//sort 메뉴 단순 출력
-		logic_of_8();//sort 메뉴 입력
-		return 1;
+		logic_of_8();//sort 메뉴 입력 및 진행
+		return 1;//logic_of_6의 결과가 1이 됨.
 	}
 	else if (menu_btn == 3)//quit이므로 종료해야 함.
 	{
@@ -220,6 +221,8 @@ int logic_of_6()//파일을 입력받았으니 sort를 선택할 수 있게 메�
 	}
 	else if (menu_btn == 1)//파일 재입력
 	{
+		fclose(fp);//이전 파일 메모리 해제
+		free(students);//이전 파일 메모리 해제
 		logic_of_3();//3번 과정으로 feedback 해야 함.
 		int result_of_4_reuse=logic_of_4();//4번 과정. 조건 검사. 만약 오류 발생할경우 return 0; 가 입력되면 프로그램 종료.
 		if (result_of_4_reuse==1)//조건 검사를 통과한다면
@@ -256,30 +259,108 @@ void sorting_algorithm(int btn_temp)//sorting을 처리하는 함수
 	if (btn_temp ==1)//Name. 알파벳 순 정렬해야 함.
 	{
 		printf("No Name Age Math English History\n");
-		//strcmp() 사용해서 접근
+		//strcmp() 사용해서 접근//<string.h> call
+		struct student temp;// 임시 구조체 변수 선언
+		for (int i=num_of_student-1; i>0; --i)//학생 수-1 만큼 실행된다.
+		{
+			for (int j =0;j<i;++j)//i 만큼 실행된다.
+			{
+				if (strcmp(students[j].name,students[j+1].name)>0)
+				{
+					temp = students[j];
+					students[j] = students[j+1];
+					students[j+1] = temp;
+				}
+			}
+		}//정렬은 종료. 이제 출력해야 함.
+		for (int i = 0;i<num_of_student;++i)
+		{
+			printf("%d %s %d %d %d %d\n",i+1, students[i].name, students[i].age, students[i].math, students[i].english, students[i].history);
+		}
 	}
 	else if (btn_temp==2)//age. 숫자 오름차순 정렬해야 함.
 	{
 		printf("No Age Name Math English History\n");//제목 행 출력
-		for (int i=0; i<num_of_student; i++)
+		struct student temp;// 임시 구조체 변수 선언
+		for (int i=num_of_student-1; i>0; --i)//학생 수-1 만큼 실행된다.
 		{
-
+			for (int j =0;j<i;++j)//i 만큼 실행된다.
+			{
+				if (students[j].age > students[j+1].age)
+				{
+					temp = students[j];
+					students[j] = students[j+1];
+					students[j+1] = temp;
+				}
+			}
+		}//정렬은 종료. 이제 출력해야 함.
+		for (int i = 0;i<num_of_student;++i)
+		{
+			printf("%d %d %s %d %d %d\n",i+1, students[i].age, students[i].name, students[i].math, students[i].english, students[i].history);
 		}
-
 	}
 	else if (btn_temp==3)//math. 숫자 오름차순 정렬해야 함.
 	{
 		printf("No Math Name Age English History\n");
-
+		struct student temp;// 임시 구조체 변수 선언
+		for (int i=num_of_student-1; i>0; --i)//학생 수-1 만큼 실행된다.
+		{
+			for (int j =0;j<i;++j)
+			{
+				if (students[j].math > students[j+1].math)
+				{
+					temp = students[j];
+					students[j] = students[j+1];
+					students[j+1] = temp;
+				}
+			}
+		}//정렬은 종료. 이제 출력해야 함.
+		for (int i = 0;i<num_of_student;++i)
+		{
+			printf("%d %d %s %d %d %d\n",i+1, students[i].math, students[i].name, students[i].age, students[i].english, students[i].history);
+		}
 	}
 	else if (btn_temp==4)//english. 숫자 오름차순 정렬해야 함.
 	{
 		printf("No English Name Age Math History\n");
-
+		struct student temp;// 임시 구조체 변수 선언
+		for (int i=num_of_student-1; i>0; --i)//학생 수-1 만큼 실행된다.
+		{
+			for (int j =0;j<i;++j)
+			{
+				if (students[j].english > students[j+1].english)
+				{
+					temp = students[j];
+					students[j] = students[j+1];
+					students[j+1] = temp;
+				}
+			}
+		}//정렬은 종료. 이제 출력해야 함.
+		for (int i = 0;i<num_of_student;++i)
+		{
+			printf("%d %d %s %d %d %d\n",i+1, students[i].english, students[i].name, students[i].age, students[i].math, students[i].history);
+		}
 	}
 	else if (btn_temp==5)//history. 숫자 오름차순 정렬해야 함.
 	{
 		printf("No History Name Age Math English\n");
-
+		struct student temp;// 임시 구조체 변수 선언
+		for (int i=num_of_student-1; i>0; --i)//학생 수-1 만큼 실행된다.
+		{
+			for (int j =0;j<i;++j)
+			{
+				if (students[j].history > students[j+1].history)
+				{
+					temp = students[j];
+					students[j] = students[j+1];
+					students[j+1] = temp;
+				}
+			}
+		}//정렬은 종료. 이제 출력해야 함.
+		for (int i = 0;i<num_of_student;++i)
+		{
+			printf("%d %d %s %d %d %d\n",i+1, students[i].history, students[i].name, students[i].age, students[i].math, students[i].english);
+		}
 	}
 }
+//////////////////////////////////////////////////
