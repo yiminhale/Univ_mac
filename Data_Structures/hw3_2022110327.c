@@ -21,11 +21,17 @@ int logic_of_3();//파일 입력 받고 제어하기
 int count_student(FILE *fp);//파일에 존재하는 학생 수 세기
 int logic_of_4();//파일 조건 검사
 void logic_of_5();//Result 출력으로 파일 내용 보여주기
+int logic_of_6();//파일 input 이후 메뉴 출력 및 로직
+void logic_of_7();//sort 메뉴 단순 출력
+void logic_of_8();//sort 메뉴 입력. 어떤 인자를 기준으로 오름차순 정렬할 것인지 결정
+//굳이 필요 없을 듯. void logic_of_9();//logic_of_6 로 feedback loop. 여기서 quit될 때까지 무한 반복해야 함.
+void sorting_algorithm(int btn_temp);//sorting을 처리하는 함수
 /////////////////////////////////////////////////전역변수 선언
 int menu_btn = 0;//menu 선택값을 위한 변수 선언 및 초기화
 int num_of_student=0;
 struct student *students=NULL;
 FILE *fp=NULL;
+int sort_menu_btn = 0;//sort menu 선택 저장 변수
 /////////////////////////////////////////////////학생 정보를 저장할 구조체 선언
 struct student
 {
@@ -43,7 +49,31 @@ int main(){
 	{
 		logic_of_3();//3번 과정. Input 받기.
 	}
-
+	else if (result_of_2==0)//파일이 입력되지 않은 상태에서 3번과 2번을 선택할 경우.
+	{
+		return 0;//프로그램 종료
+	}
+	int result_of_4=logic_of_4();//4번 과정. 조건 검사. 만약 오류 발생할경우 return 0; 가 입력되면 프로그램 종료.
+	if (result_of_4==1)//조건 검사를 통과한다면
+	{
+		logic_of_5();//파일의 결과를 출력하세요.
+	}
+	else if (result_of_4==0)//파일의 조건이 문제가 있을 경우
+	{
+		return 0;//프로그램 종료
+	}
+	int result_of_6=0;//logic_of_6가 반복되는 동안 계속 선언되는 것을 회피하기 위해 먼저 선언함.
+	while (1)//파일이 입력된 상태에서는 3번 메뉴인 quit을 실행하기 전까지는 Insert든 Sort든 반복할 수 있어야 함.
+	{
+		result_of_6 = logic_of_6();
+		if (result_of_6 == 0)//3번 Quit을 선택할 경우 프로그램 종료
+		{
+			break;
+		}
+		//2번 선택시 logic_of_6(); 함수 구성에 따라 sorting_algorithm(); 실행됨.
+		//1번 선택시 logic_of_3(); 로 feedback하여 반복.
+	}
+	return 0;//프로그램 종료
 }
 /////////////////////////////////////////////////
 void print_horizontal_rule ()// 구분선 출력
@@ -73,12 +103,12 @@ int print_error_yo()//나이오류가 결정났을 때 사용. 즉, 검사 로�
 {
 	printf("Result : The age cannot be a negative number. Program terminates.\n");
 	print_horizontal_rule();
-
 	return 0;// 프로그램 종료
 }
 //////////////////////////////////////////////////
 int print_error_sr(){//score range 벗어날 경우 사용. 즉, 검사 로직은 따로 구현
 	printf("Result: The score is out of range. Program terminates.\n");
+	print_horizontal_rule();
 	return 0;//프로그램 종료
 }
 //////////////////////////////////////////////////
@@ -107,7 +137,7 @@ int logic_of_2()//첫 메뉴 출력. 첫 메뉴 출력이므로 당연히 입력
 //////////////////////////////////////////////////
 int logic_of_3()//파일 받는 로직 구현
 {
-	printf("\nFile name : ");
+	printf("\nFile name : ");//일반 출력: ui용
 	char file_name[50];//파일명 입력받기 위한 변수 선언
 	scanf("%s",file_name);//파일이름 입력
 	fp= fopen(file_name,"r");//파일 이름 찾아서 열기//추후 fclose로 닫아야 함.
@@ -121,6 +151,7 @@ int logic_of_3()//파일 받는 로직 구현
 	for (int count=0;count<num_of_student;count++)
 	{
 		fscanf(fp,"%s %d %d %d %d",students[count].name, &students[count].age, &students[count].math, &students[count].english, &students[count].history);
+		//각 구조체 변수에 txt 데이터 저장
 	}
 }
 //////////////////////////////////////////////////
@@ -139,7 +170,7 @@ int logic_of_4()//파일 조건 검사: 나이가 자연수여야 하고, 성적
 {
 	for (int check_contidion=0;check_contidion<num_of_student;check_contidion++)
 	{
-		if (students[check_contidion].age < 0)
+		if (students[check_contidion].age <= 0)
 		{
 			fclose(fp);
 			free(students);
@@ -163,22 +194,92 @@ int logic_of_4()//파일 조건 검사: 나이가 자연수여야 하고, 성적
 //////////////////////////////////////////////////
 void logic_of_5()//Result 출력으로 파일 내용 보여주기
 {
-
+	printf("Result :\n");//일반 출력
+	printf("No Name Math English History\n");//일반 출력
+	for (int index = 0; index<num_of_student;++index)
+	{
+		printf("%d %s %d %d %d %d\n",index+1,students[index].name,students[index].age,students[index].math,students[index].english,students[index].history);
+	}
 }
 //////////////////////////////////////////////////
-void logic_of_6()//파일을 입력받았으니 sort를 선택할 수 있게 메뉴 출력
+int logic_of_6()//파일을 입력받았으니 sort를 선택할 수 있게 메뉴 출력
 {
-
+	print_menu();
+	scanf("%d", &menu_btn);//menu 입력 받아서 저장
+	if (menu_btn == 2)//sort 선택.
+	{
+		logic_of_7();//sort 메뉴 단순 출력
+		logic_of_8();//sort 메뉴 입력
+		return 1;
+	}
+	else if (menu_btn == 3)//quit이므로 종료해야 함.
+	{
+		fclose(fp);
+		free(students);
+		return print_quit();//메모리를 누수를 방지하기 위해 해제하고 0을 반환하고 종료
+	}
+	else if (menu_btn == 1)//파일 재입력
+	{
+		logic_of_3();//3번 과정으로 feedback 해야 함.
+		int result_of_4_reuse=logic_of_4();//4번 과정. 조건 검사. 만약 오류 발생할경우 return 0; 가 입력되면 프로그램 종료.
+		if (result_of_4_reuse==1)//조건 검사를 통과한다면
+		{
+			logic_of_5();//파일의 결과를 출력하세요.
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 }
-void logic_of_7()//sort 메뉴 출력 어떤 인자를 기준으로 오름차순 정렬할 것인지 설정
+//////////////////////////////////////////////////
+void logic_of_7()//sort 메뉴 단순 출력
 {
-
+	print_sort_menu();
 }
+//////////////////////////////////////////////////
 void logic_of_8()//sort 메뉴 입력. 어떤 인자를 기준으로 오름차순 정렬할 것인지 결정
 {
-
+	scanf("%d",&sort_menu_btn);//sort menu 에서 1~5까지 숫자를 받아서 전역변수에 저장
+	sorting_algorithm(sort_menu_btn);//sorting 진행
 }
-void logic_of_9()//logic_of_6 로 feedback loop. 여기서 quit될 때까지 무한 반복해야 함.
+//////////////////////////////////////////////////
+/*void logic_of_9()//logic_of_6 로 feedback loop. 여기서 quit될 때까지 무한 반복해야 함.
 {
 
+}*/ //굳이 9번과정을 새로 만들 필요 없이 logic_of_6를 재활용하면 될듯.
+//////////////////////////////////////////////////
+void sorting_algorithm(int btn_temp)//sorting을 처리하는 함수
+{	//num_of_student 를 사용해서 해당 횟수만큼 정렬 후 출력해야 함.
+	//bubble sort로 접근.
+	if (btn_temp ==1)//Name. 알파벳 순 정렬해야 함.
+	{
+		printf("No Name Age Math English History\n");
+		//strcmp() 사용해서 접근
+	}
+	else if (btn_temp==2)//age. 숫자 오름차순 정렬해야 함.
+	{
+		printf("No Age Name Math English History\n");//제목 행 출력
+		for (int i=0; i<num_of_student; i++)
+		{
+
+		}
+
+	}
+	else if (btn_temp==3)//math. 숫자 오름차순 정렬해야 함.
+	{
+		printf("No Math Name Age English History\n");
+
+	}
+	else if (btn_temp==4)//english. 숫자 오름차순 정렬해야 함.
+	{
+		printf("No English Name Age Math History\n");
+
+	}
+	else if (btn_temp==5)//history. 숫자 오름차순 정렬해야 함.
+	{
+		printf("No History Name Age Math English\n");
+
+	}
 }
