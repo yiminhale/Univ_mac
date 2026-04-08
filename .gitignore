@@ -1,0 +1,107 @@
+# ===== 문서/미디어 파일 (저작권 + 개인정보 보호) =====
+*.pdf
+*.pptx
+*.xlsx
+*.docx
+*.doc
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+
+# ===== macOS 시스템 파일 =====
+.DS_Store
+.AppleDouble
+.LSOverride
+.tmp.driveupload/
+._*
+
+# ===== IDE 설정 파일 =====
+.idea/
+.vscode/
+.claude/
+.vs/
+*.iml
+
+# ===== C/C++ 빌드 결과물 =====
+# 빌드 폴더
+build/
+cmake-build-*/
+out/
+
+# 디버그 심볼
+*.dSYM/
+
+# 오브젝트 파일
+*.o
+*.obj
+*.lo
+*.slo
+*.ko
+*.elf
+
+# 라이브러리
+*.a
+*.lib
+*.la
+*.so
+*.so.*
+*.dylib
+
+# 기타 빌드 결과물
+*.exe
+*.out
+*.app
+
+# C 컴파일 바이너리 (확장자 없음) - 디렉토리별 패턴
+**/hw[0-9]*
+!**/hw[0-9]*.*
+**/Quiz[0-9]*
+!**/Quiz[0-9]*.*
+**/Q[0-9]*
+!**/Q[0-9]*.*
+**/prac
+**/practice
+**/calculator_*
+!**/calculator_*.*
+**/test_*
+!**/test_*.*
+**/analyze_*
+!**/analyze_*.*
+**/find_all_*
+!**/find_all_*.*
+**/pointer_array_*
+!**/pointer_array_*.*
+**/quick_test
+**/main
+!**/main.*
+
+# ===== Rust 빌드 =====
+**/target/
+
+# ===== 압축 파일 =====
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# ===== CMake 관련 =====
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+CMakeSettings.json
+CMakeUserPresets.json
+
+# ===== 개인정보 포함 파일 =====
+*_KNU*.md
+Syllabus/
+Timetable/
+Curriculum/
+Screen_Shot/
+Rust_language/
