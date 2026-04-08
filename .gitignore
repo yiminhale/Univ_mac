@@ -1,16 +1,3 @@
-# ===== 문서/미디어 파일 (저작권 + 개인정보 보호) =====
-*.pdf
-*.pptx
-*.xlsx
-*.docx
-*.doc
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.bmp
-*.svg
-
 # ===== macOS 시스템 파일 =====
 .DS_Store
 .AppleDouble
@@ -55,28 +42,29 @@ out/
 *.out
 *.app
 
-# C 컴파일 바이너리 (확장자 없음) - 디렉토리별 패턴
+# C 컴파일 바이너리 (확장자 없음) - 소스코드(.c .h .txt)만 허용
 **/hw[0-9]*
-!**/hw[0-9]*.*
+!**/hw[0-9]*.[ch]
+!**/hw[0-9]*.txt
 **/Quiz[0-9]*
-!**/Quiz[0-9]*.*
+!**/Quiz[0-9]*.[ch]
 **/Q[0-9]*
-!**/Q[0-9]*.*
+!**/Q[0-9]*.[ch]
 **/prac
 **/practice
 **/calculator_*
-!**/calculator_*.*
+!**/calculator_*.[ch]
 **/test_*
-!**/test_*.*
+!**/test_*.[ch]
 **/analyze_*
-!**/analyze_*.*
+!**/analyze_*.[ch]
 **/find_all_*
-!**/find_all_*.*
+!**/find_all_*.[ch]
 **/pointer_array_*
-!**/pointer_array_*.*
+!**/pointer_array_*.[ch]
 **/quick_test
 **/main
-!**/main.*
+!**/main.[ch]
 
 # ===== Rust 빌드 =====
 **/target/
@@ -105,3 +93,16 @@ Timetable/
 Curriculum/
 Screen_Shot/
 Rust_language/
+
+# ===== 문서/미디어 파일 (최하단: negation 패턴보다 우선) =====
+*.pdf
+*.pptx
+*.xlsx
+*.docx
+*.doc
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
