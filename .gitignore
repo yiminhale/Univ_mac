@@ -3,6 +3,7 @@
 .AppleDouble
 .LSOverride
 .tmp.driveupload/
+.tmp.drivedownload/
 ._*
 
 # ===== IDE 설정 파일 =====
@@ -70,6 +71,7 @@ out/
 **/struct_v2
 **/array_3d
 **/drill/drill
+**/reader-writer
 
 # ===== 도구/빌드 캐시 =====
 # JetBrains/기타 캐시
