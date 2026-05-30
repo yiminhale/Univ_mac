@@ -65,6 +65,18 @@ out/
 **/quick_test
 **/main
 !**/main.[ch]
+# 과제별 실행파일 (소스명과 동일, 확장자 없음)
+**/struct
+**/struct_v2
+**/array_3d
+**/drill/drill
+
+# ===== 도구/빌드 캐시 =====
+# JetBrains/기타 캐시
+**/.cache/
+# MATLAB/Simulink 빌드 캐시 (.slx 모델 본체는 추적, 캐시만 제외)
+**/slprj/
+*.slxc
 
 # ===== Rust 빌드 =====
 **/target/
